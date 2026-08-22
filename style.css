@@ -1,0 +1,979 @@
+/* je suis un commentaire css*/
+/* now let's talk about class and id  attribut in html*/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: #FFFFFF;
+  color: #1a1a1a;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background-color: #ffffff;
+  border-bottom: 3px solid #E91E8C;/* pour la bordure rose en dessous du contenu du menu*/
+}
+
+header h1 {
+  font-size: 24px;
+  font-weight: 900;
+  color: #1e3a8a;
+  word-spacing: 6px;
+}
+/*Tous liens dans le <a> de mon HTML reçois le style ci-dessous*/
+nav a {
+  margin-left: 24px;
+  text-decoration: none;
+  color: #1a1a1a;
+  font-weight: 600;
+  text-transform: capitalize;
+  letter-spacing: 0.5px;
+  font-size: 14px;
+}
+
+nav a:hover {
+  color: #E91E8C;
+}
+
+.page {
+  padding: 100px 40px;
+  max-width: 1100px;
+}
+
+/* La section accueil a besoin de plus de place, pour accueillir texte + carrousel côte à côte */
+#accueil.page {
+  max-width: 1100px;
+}
+
+.page h2 {
+  font-size: 48px;
+  font-weight: 900;
+  line-height: 1.15;
+  margin-bottom: 24px;
+}
+/*Pour tout texte  étiquette  sur le site*/
+.label-accueil {
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #E91E8C;
+  margin-bottom: 16px;
+  }
+/*Pour texte du bas au niveau de la page d'acceuil*/
+.sous-titre {
+  font-family: 'Georgia', serif;
+  font-size: 19px;
+  font-style: italic;
+  color: #444;
+  margin-bottom: 16px;
+  max-width: 600px;
+  line-height: 1.5;
+}
+
+button {
+  background-color: #1e3a8a;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 14px 28px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0px 4px 10px rgba(30, 58, 138, 0.3);
+  margin-top: 8px;
+}
+
+button:hover {
+  background-color: #E91E8C;
+}
+
+/* ===== MISE EN PAGE DE L'ACCUEIL : texte à gauche, carrousel à droite ===== */
+.accueil-contenu {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  flex-wrap: wrap; /* si l'écran est petit, le carrousel passe sous le texte */
+}
+
+.accueil-texte {
+  flex: 1;
+  min-width: 300px;
+}
+
+/* ===== CARROUSEL AUTOMATIQUE (glissement horizontal) ===== */
+
+.carrousel-bloc {
+  flex: 1;
+  min-width: 300px;
+}
+.carrousel {
+  width: 100%;
+  height: 320px;
+  overflow: hidden;
+  border-radius: 16px;
+  }
+
+.carrousel-piste {
+  display: flex; /* les slides côte à côte, jamais empilées */
+  height: 100%;
+  transition: transform 1s ease; /* glissement progressif */
+}
+
+.slide {
+  min-width: 100%; /* chaque slide prend TOUTE la largeur du cadre */
+  position: relative;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* l'image remplit le cadre sans se déformer */
+  box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+.slide p {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.55);
+  color: white;
+  padding: 16px;
+  margin: 0;
+  font-style: italic;
+   font-family: 'Georgia', serif;   /* ← nouvelle ligne, pour matcher le sous-titre */
+
+}
+
+footer {
+  background-color: #1e3a8a;
+  color: #dbe4ff;
+  padding: 50px 40px 24px;
+}
+
+.footer-contenu {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 40px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.footer-logo img {
+  height: 60px;
+  width: auto;
+}
+
+.footer-nom {
+  font-weight: 900;
+  font-size: 18px;
+  color: white;
+}
+
+.footer-titre {
+  font-weight: 700;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: white;
+  margin-bottom: 12px;
+}
+
+.footer-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.footer-menu a {
+  color: #dbe4ff;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.footer-menu a:hover {
+  color: #E91E8C;
+}
+
+.footer-contact p {
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.footer-contact i {
+  margin-right: 8px;
+  color: #E91E8C;
+}
+
+.footer-social {
+  display: flex;
+  gap: 16px;
+}
+
+.footer-social a {
+  color: white;
+  font-size: 22px;
+  text-decoration: none;
+}
+
+.footer-social a:hover {
+  color: #E91E8C;
+}
+
+.footer-copyright {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 13px;
+  color: #a8b8e8;
+}
+.lien-contact {
+  color: #dbe4ff;
+  text-decoration: none;
+}
+
+.lien-contact:hover {
+  color: #E91E8C;
+}
+/* Pour la partie qui mentionne que les images sont générés par l'ia*/
+.disclaimer-ia {
+  font-size: 10px;
+  color: #999;
+  font-style: italic;
+  margin-top: 8px;
+  text-align: right;
+}
+
+.infolettre {
+  background-color: #FFF9F0;
+  padding: 80px 40px;
+  text-align: center;
+}
+
+.infolettre-contenu {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.infolettre h2 {
+  font-size: 32px;
+  font-weight: 900;
+  margin-bottom: 16px;
+}
+
+.infolettre .sous-titre {
+  font-family: 'Georgia', serif;
+  font-size: 19px;
+  font-style: italic;
+  color: #444;
+  margin-bottom: 16px;
+  max-width: 600px;
+  line-height: 1.5;
+
+}
+
+.infolettre-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+}
+
+.infolettre-ligne {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+  width: 100%;
+}
+
+.infolettre-form input,
+.infolettre-form select {
+  flex: 1;
+  min-width: 180px;
+  padding: 12px 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  background-color: white;
+}
+/*Pour la présentation rapide du champ d'action de JSG sur la page d'acceuil*/
+/*Pour la présentation rapide du champ d'action de JSG sur la page d'acceuil*/
+.piliers {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 colonnes toujours égales, forcées côte à côte */
+  gap: 24px;
+  padding: 60px 40px;
+  max-width: 1100px;
+  margin: 40px auto;
+  background-color: #2e2e2e; /* assombri, pour mieux faire ressortir la transparence des cartes */
+  border-radius: 24px;
+}
+
+.pilier-carte {
+  position: relative;
+  background-color: rgba(255, 255, 255, 0.08); /* légèrement augmenté pour être plus visible */
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  padding: 32px;
+  text-align: left;
+  text-decoration: none;
+  color: #f0f0f0;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.pilier-carte:hover {
+  transform: translateY(-6px);
+  background-color: rgba(255, 255, 255, 0.14);
+}
+
+.pilier-numero {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  font-family: 'Georgia', serif;
+  font-size: 22px;
+  color: #E91E8C;
+  opacity: 0.7;
+}
+
+.pilier-carte i {
+  font-size: 32px;
+  color: #E91E8C;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.pilier-carte h3 {
+  font-family: 'Georgia', serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: #E91E8C;
+  margin-bottom: 12px;
+}
+
+.pilier-carte p {
+  font-size: 14px;
+  color: #ddd;
+  line-height: 1.6;
+}
+/* Règles speciales du mini-apropos qui présente brièvement JSG au visiteurs préssés*/
+
+.mini-apropos {
+  padding: 60px 40px;
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.mini-apropos h2 {
+  font-size: 32px;
+  font-weight: 900;
+  margin-bottom: 16px;
+}
+
+.mini-apropos .sous-titre {
+ font-family: 'Georgia', serif;
+  font-size: 19px;
+  font-style: italic;
+  color: #444;
+  margin-bottom: 16px;
+  max-width: 600px;
+  line-height: 1.5;
+}
+
+.mini-apropos > a {
+  color: #E91E8C;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 15px;
+}
+
+.mini-apropos > a:hover {
+  text-decoration: underline;
+}
+
+/*Règles flèches de retour en  haut*/
+
+#retour-haut {
+  position: fixed; /* Pour coller l'élément à l'écran afin qu'il reste toujours fixer meme en scrollant, différent de absolute qui est relatif à son parent adapter pour la flèche de retour vers le haut*/
+  bottom: 30px;
+  right: 30px;
+  background-color: #1e3a8a;
+  color: white;
+  border: none;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%; /* Pour donner un cercle parfait sur élément carré width = height*/
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+  display: none;   /* caché par défaut */
+  align-items: center;      /* centre l'icône verticalement */
+  justify-content: center;  /* centre l'icône horizontalement */
+  z-index: 100;
+  transition: background-color 0.3s ease;
+}
+
+#retour-haut:hover {
+  background-color: #E91E8C;
+}
+
+/*Pour élargir le texte du contenue de apropos*/
+#apropos.page {
+  max-width: 100%; /* prend toute la largeur disponible, pas de limite */
+  padding: 0 60px 100px; /* garde un peu d'air sur les côtés, mais pas de max-width */
+  margin : 0;
+}
+.apropos-presentation {
+  max-width: 100%;
+  margin-bottom: 50px;
+  }
+
+  .apropos-presentation h2 {
+  margin-top: 60px;   /* ← nouvelle règle, ajoute de l'air sous la barre bleue */
+  font-size: 40px;
+  font-weight: 900;
+  margin-bottom: 16px;
+}
+  .apropos-presentation .sous-titre {
+     max-width: 100%; /* annule le max-width: 600px hérité de .sous-titre */
+    font-size: 17px;   /* ajustez cette valeur selon votre goût */
+}
+.apropos-blocs {
+  display: flex;
+  flex-direction: column;   /* empile Vision/Mission/Valeurs verticalement au lieu de côte à côte */
+  gap: 24px;
+  max-width: 100%;
+}
+
+.apropos-bloc {
+  flex: 1;
+  min-width: 250px;
+  background-color: #FAFAFA;
+  border-radius: 16px;
+  padding: 28px;
+}
+
+.apropos-bloc i {
+  font-size: 28px;
+  color: #E91E8C;
+  margin-bottom: 12px;
+}
+
+.apropos-bloc h3 {
+  font-size: 24px;
+  font-weight: 900;
+  margin-bottom: 10px;
+}
+
+.apropos-bloc p {
+  font-size: 16px;
+  color: #555;
+  line-height: 1.6;
+}
+/* Pour la mise en forme de la barre de à propos*/
+/* Pour la mise en forme de la barre de à propos*/
+.page-titre-barre {
+  background-color: #1e3a8a;
+  color: white;
+  padding: 24px 60px;
+  margin: 0 -60px 40px;   /* corrigé : plus de -100px, car #apropos.page a déjà padding-top: 0 */
+  text-align: left;
+}
+
+.page-titre-barre p {
+  font-size: 13px;
+  color: #dbe4ff;
+  margin-bottom: 4px;
+}
+
+.page-titre-barre h2 {
+  font-size: 28px;   /* réduit, au lieu de 40px */
+  font-weight: 900;
+  margin-bottom: 0;
+  color: white;
+}
+/*  :: maker Cible spécifiquement la puce elle-même (pas le texte) — permet de la colorer indépendamment*/
+.liste-valeurs {
+  list-style-type: none;   /* on retire les puces par défaut */
+  padding-left: 0;
+  font-size: 16px;
+  color: #555;
+  line-height: 1.8;
+}
+
+.liste-valeurs li {
+  margin-bottom: 4px;
+  padding-left: 24px;
+  position: relative;
+}
+
+.liste-valeurs li::before {
+  content: "★";
+  position: absolute;
+  left: 0;
+  color: #E91E8C;
+}
+
+/* ===== PILIERS DE LA PAGE NOS ACTIONS ===== */
+.action-pilier {
+  margin-bottom: 60px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid #eee;
+}
+
+.action-pilier-titre {
+  font-size: 32px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.action-pilier-titre i {
+  color: #E91E8C;
+}
+
+.sous-projet {
+  margin-top: 32px;
+  padding-left: 20px;
+  border-left: 3px solid #E91E8C;
+}
+
+.sous-projet h3 {
+  font-size: 22px;
+  margin-bottom: 16px;
+}
+
+.sous-projet-avenir .a-venir {
+  color: #999;
+  font-style: italic;
+  font-size: 15px;
+}
+
+/* Onglets années */
+.onglets-annees {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.onglet-annee {
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  background: white;
+   color: #1a1a1a; 
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.onglet-annee.active {
+  background-color: #1e3a8a;
+  color: white;
+  border-color: #1e3a8a;
+}
+
+.annee-contenu p {
+  margin-bottom: 12px;
+  font-size: 15px;
+  color: #444;
+}
+
+.annee-badge {
+  display: inline-block;
+  background-color: #FFF9F0;
+  color: #E91E8C;
+  font-weight: 700;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  margin-bottom: 12px;
+}
+
+.annee-badge-actif {
+  background-color: #E91E8C;
+  color: white;
+}
+
+.lien-youtube {
+  display: inline-block;
+  color: #1e3a8a;
+  text-decoration: none;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.lien-youtube:hover {
+  color: #E91E8C;
+}
+
+.affiche-annee {
+  display: block;
+  max-width: 400px;
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.1);
+  margin-top: 12px;
+  margin-bottom: 24px;
+}
+
+.bouton-don-annee {
+  background-color: #1e3a8a;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 16px;
+}
+
+.bouton-don-annee:hover {
+  background-color: #E91E8C;
+}
+/* ===== INTRO ZIGZAG DES PILIERS (façon Kintuadi Maya) ===== */
+.pilier-intro {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+
+.pilier-intro-inverse {
+  flex-direction: row-reverse;
+}
+
+.pilier-intro-texte {
+  flex: 1;
+  min-width: 280px;
+}
+
+.pilier-intro-image {
+  flex: 1;
+  min-width: 280px;
+}
+
+.pilier-intro-image img {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.barre-accent {
+  width: 60px;
+  height: 3px;
+  background-color: #1e3a8a;
+  margin: 16px 0 20px;
+}
+
+.bouton-espace {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: #1e3a8a;
+  color: white !important;
+  padding: 10px 20px;
+  border-radius: 50px;
+  margin-left: 24px;
+  text-transform: none;
+}
+
+.bouton-espace:hover {
+  background-color: #E91E8C;
+  color: white !important;
+}
+/* ===== SECTION ÉQUIPE (grand format, façon Vases d'Honneur) ===== */
+.membre-profil {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  margin-bottom: 80px;
+  flex-wrap: wrap;
+}
+
+.membre-profil-inverse {
+  flex-direction: row-reverse;
+}
+
+.membre-profil-image {
+  flex: 1;
+  min-width: 280px;
+}
+
+.membre-profil-image img {
+  width: 100%;
+  max-width: 380px;
+  border-radius: 50%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border: 4px solid #E91E8C;
+  display: block;
+  margin: 0 auto;
+}
+
+.membre-profil-texte {
+  flex: 1;
+  min-width: 280px;
+}
+
+.membre-profil-role {
+  color: #E91E8C;
+  font-weight: 700;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+}
+
+.membre-profil-nom {
+  font-size: 32px;
+  font-weight: 900;
+  margin-bottom: 20px;
+}
+
+.membre-profil-citation {
+  font-family: 'Georgia', serif;
+  font-style: italic;
+  font-size: 17px;
+  color: #444;
+  line-height: 1.7;
+  border-left: 3px solid #E91E8C;
+  padding-left: 20px;
+  margin-bottom: 20px;
+}
+
+.membre-linkedin {
+  color: #1e3a8a;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.membre-linkedin:hover {
+  color: #E91E8C;
+}
+
+/* ===== SECTION CONTACT ===== */
+
+#contact {
+  padding: 80px 40px;
+  background-color: #FFF9F0;
+}
+
+/* Conteneur général */
+#contact .section-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* Titre de la section */
+#contact .section-header {
+  text-align: center;
+  margin-bottom: 45px;
+}
+
+#contact .section-subtitle {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #E91E8C;
+  margin-bottom: 12px;
+}
+
+#contact .section-title {
+  font-size: 40px;
+  font-weight: 900;
+  line-height: 1.2;
+  color: #1a1a1a;
+}
+
+#contact .section-title .accent {
+  color: #E91E8C;
+}
+
+
+/* ===== LES CARTES CONTACT ===== */
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.contact-card {
+  background-color: #FFFFFF;
+  border-radius: 16px;
+  padding: 35px 25px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  text-align: center;
+  text-decoration: none;
+  color: #1a1a1a;
+
+  border: 1px solid #eeeeee;
+  box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.08);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.contact-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0px 10px 28px rgba(30, 58, 138, 0.15);
+  border-color: #E91E8C;
+}
+
+
+/* ===== ICÔNES ===== */
+
+.contact-icon-wrap {
+  width: 58px;
+  height: 58px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #1e3a8a;
+  color: white;
+
+  border-radius: 50%;
+  margin-bottom: 20px;
+
+  transition:
+    background-color 0.3s ease,
+    transform 0.3s ease;
+}
+
+.contact-icon-wrap svg {
+  width: 25px;
+  height: 25px;
+}
+
+.contact-card:hover .contact-icon-wrap {
+  background-color: #E91E8C;
+  transform: scale(1.08);
+}
+
+
+/* ===== TEXTES ===== */
+
+.contact-label {
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+
+  color: #E91E8C;
+
+  margin-bottom: 12px;
+}
+
+.contact-value {
+  font-size: 15px;
+  color: #444;
+  line-height: 1.7;
+}
+
+
+/* ===== NUMÉROS CANADA / CONGO ===== */
+
+.contact-value strong {
+  color: #1e3a8a;
+  font-size: 14px;
+}
+
+.contact-value a {
+  color: #444;
+  text-decoration: none;
+  font-weight: 600;
+
+  transition: color 0.3s ease;
+}
+
+.contact-value a:hover {
+  color: #E91E8C;
+}
+
+
+/* Séparation entre les deux pays */
+.contact-pays {
+  margin-bottom: 18px;
+}
+
+.contact-pays:last-child {
+  margin-bottom: 0;
+}
+
+
+/* ===== RESPONSIVE TABLETTE ===== */
+
+@media (max-width: 850px) {
+
+  .contact-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  #contact .section-title {
+    font-size: 34px;
+  }
+}
+
+
+/* ===== RESPONSIVE TÉLÉPHONE ===== */
+
+@media (max-width: 600px) {
+
+  #contact {
+    padding: 60px 20px;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  #contact .section-title {
+    font-size: 30px;
+  }
+
+  .contact-card {
+    padding: 30px 20px;
+  }
+}
+
+/* Correction : la section Contact garde la classe .page pour la navigation,
+   mais doit rester en pleine largeur (fond rose complet), pas limitée à 1100px */
+#contact.page {
+  max-width: none;
+  padding: 80px 40px;
+}
