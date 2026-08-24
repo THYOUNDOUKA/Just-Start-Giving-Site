@@ -1,6 +1,10 @@
 /* je suis un commentaire css*/
 /* now let's talk about class and id  attribut in html*/
 
+/* Cette règle va forcer le hidden à s'opérer peu importe s'il y a un display: flex à l'avenir*/
+[hidden] {
+  display: none !important;
+}
 * {
   margin: 0;
   padding: 0;
@@ -98,9 +102,9 @@ button:hover {
 
 /* ===== MISE EN PAGE DE L'ACCUEIL : texte à gauche, carrousel à droite ===== */
 .accueil-contenu {
-  display: flex;
+  display: flex; /* Active le mode flexbox sur le parent*/
   align-items: center;
-  gap: 60px;
+  gap: 60px; /* gap permet de controler l'espacement entre les éléments*/
   flex-wrap: wrap; /* si l'écran est petit, le carrousel passe sous le texte */
 }
 
@@ -976,4 +980,674 @@ footer {
 #contact.page {
   max-width: none;
   padding: 80px 40px;
+}
+
+/* ===== MON ESPACE JSG ===== */
+#communaute.page {
+  max-width: none;
+  padding: 0 60px 100px;
+}
+
+/* Carte de connexion (style dégradé, comme Login Now) */
+.espace-connexion {
+  display: flex;
+  justify-content: center;
+  padding: 50px 0;
+}
+.espace-connexion[hidden] {
+  display: none;
+}
+
+.connexion-contenu {
+  width: 100%;
+  max-width: 480px;
+  background: linear-gradient(160deg, #1e3a8a, #3a1e6e);
+  border-radius: 20px;
+  padding: 45px 40px 35px;
+  text-align: center;
+  box-shadow: 0px 12px 32px rgba(0, 0, 0, 0.2);
+}
+
+.connexion-contenu .label-accueil {
+  color: #ffb6d9;
+}
+/* Pour l'avatar de la page connexion*/
+.connexion-avatar {
+  width: 70px;
+  height: 70px;
+  background-color: #FFFF;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin: 0 auto;
+}
+/* Pour bien dimensionner de la grille de l'avatar et bien le centré*/
+.connexion-avatar i {
+  font-size: 36px;
+  color: #1e3a8a;
+}
+/* Partie CSS du de connectez vous*/
+.connexion-contenu h2 {
+  color: white;
+  font-size: 20px;
+  margin-bottom: 12px;
+}
+
+.connexion-contenu .sous-titre {
+  color: #dbe4ff;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-size: 15px;
+  max-width: 100%;
+}
+
+.form-connexion {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 24px;
+  text-align: left;
+}
+
+.form-connexion label {
+  color: #dbe4ff;
+  font-size: 13px;
+  font-weight: 600;
+  margin-top: 6px;
+}
+
+.form-connexion input,
+.form-connexion select {
+  width: 100%;
+  padding: 12px 14px;
+  border: none;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.92);
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+}
+
+.form-connexion button {
+  width: 100%;
+  background-color: #E91E8C;
+  margin-top: 12px;
+}
+
+.connexion-options {
+  margin-top: 20px;
+  color: #dbe4ff;
+  font-size: 14px;
+}
+
+.connexion-options a {
+  color: #dbe4ff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.connexion-options a:hover {
+  color: white;
+}
+
+/* Tableau de bord : menu latéral + contenu */
+.espace-tableau-bord {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 30px;
+  align-items: start;
+  padding-top: 40px;
+}
+
+.espace-tableau-bord[hidden] {
+  display: none;
+}
+.espace-entete-utilisateur {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+.espace-entete-utilisateur h2 {
+  font-size: 26px;
+  font-weight: 900;
+}
+
+.espace-avatar-mini-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.espace-avatar-mini {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background-color: #1e3a8a;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+}
+
+.espace-avatar-mini-modifier {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  width: 20px;
+  height: 20px;
+  background-color: #E91E8C;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  cursor: pointer;
+  border: 2px solid white;
+}
+
+.espace-avatar-mini-modifier:hover {
+  background-color: #1e3a8a;
+}
+
+.espace-menu {
+  background: #1e3a8a;
+  color: white;
+  padding: 24px 16px;
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: sticky;
+  top: 20px;
+}
+
+.espace-menu h3 {
+  font-weight: 900;
+  padding: 12px;
+  margin-bottom: 8px;
+}
+
+.bouton-espace-menu {
+  background: transparent;
+  box-shadow: none;
+  margin: 0;
+  text-align: left;
+  width: 100%;
+  border-radius: 10px;
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+}
+
+.bouton-espace-menu:hover,
+.bouton-espace-menu.active {
+  background-color: #E91E8C;
+}
+
+.bouton-deconnexion {
+  background: transparent;
+  box-shadow: none;
+  margin-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 0;
+  padding: 16px 14px 4px;
+  text-align: left;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+}
+
+.bouton-deconnexion:hover {
+  color: #ffb6d9;
+  background: transparent;
+}
+
+.espace-contenu {
+  background: white;
+  border: 1px solid #eee;
+  border-radius: 18px;
+  padding: 32px;
+  box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.06);
+  min-width: 0;
+}
+
+/* Statistiques du tableau de bord */
+.dashboard-statistiques {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 24px;
+}
+/* New Dashboard carte rules */
+.dashboard-carte {
+  background: white;
+  border: 1px solid #eee;
+  border-radius: 14px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  text-align: left;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.05);
+}
+
+.dashboard-icone-boite {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background-color: #1e3a8a;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.dashboard-carte-texte {
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-nombre {
+  font-size: 24px;
+  font-weight: 900;
+  color: #1a1a1a;
+}
+
+.dashboard-carte-texte p {
+  font-size: 13px;
+  color: #777;
+}
+
+.dashboard-derniere-collecte {
+  background: #FAFAFA;
+  border-radius: 14px;
+  padding: 24px;
+  margin-top: 24px;
+}
+
+.bouton-aller-galerie {
+  margin-top: 12px;
+}
+
+/* Historique des dons */
+.resume-dons {
+  background: #1e3a8a;
+  color: white;
+  border-radius: 14px;
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+.resume-dons strong {
+  font-size: 32px;
+  display: block;
+  margin: 6px 0;
+}
+
+.don-ligne {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 18px;
+  align-items: center;
+  padding: 18px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.don-montant {
+  font-weight: 900;
+  color: #1e3a8a;
+}
+
+.don-statut {
+  color: #2a9d5c;
+  font-weight: 600;
+  font-size: 13px;
+}
+
+/* Mes activités */
+.activite-carte {
+  background: #FAFAFA;
+  border-radius: 14px;
+  padding: 22px;
+  margin-bottom: 16px;
+}
+
+/* Galerie (accordéons) */
+.galerie-collecte {
+  border: 1px solid #eee;
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 16px;
+}
+
+.galerie-entete {
+  width: 100%;
+  margin: 0;
+  border-radius: 0;
+  box-shadow: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;
+  background-color: #FAFAFA;
+  color: #1a1a1a;
+}
+
+.galerie-entete:hover {
+  background-color: #FFF9F0;
+}
+
+.galerie-plus {
+  font-size: 22px;
+  color: #E91E8C;
+}
+
+.galerie-contenu {
+  padding: 24px;
+}
+
+.galerie-images {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 16px;
+}
+
+.galerie-images img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* Espace de prière */
+.form-priere {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 500px;
+  margin-top: 20px;
+}
+
+.form-priere textarea {
+  padding: 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  resize: vertical;
+}
+
+.priere-anonyme {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+.priere-anonyme input {
+  width: auto;
+}
+
+/* Profil */
+.profil-carte {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-top: 20px;
+}
+.profil-carte-droite {
+  flex: 1;
+}
+/* Avatar user */
+.profil-avatar {
+  width: 90px;
+  height: 90px;
+  background-color: #1e3a8a;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.profil-avatar i {
+  font-size: 32px;
+  color: white;
+}
+
+.profil-informations p {
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+/* Adaptation mobile/tablette */
+@media (max-width: 850px) {
+  #communaute.page { padding: 0 20px 60px; }
+  .espace-tableau-bord { grid-template-columns: 1fr; }
+  .espace-menu { position: static; }
+  .dashboard-statistiques, .galerie-images { grid-template-columns: 1fr; }
+  .don-ligne { grid-template-columns: 1fr; }
+}
+/* Pour la mise en forme de la partie modification du profil*/
+.bouton-modifier-profil {
+  margin-top: 16px;
+  font-size: 13px;
+  padding: 10px 18px;
+}
+
+.form-profil {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 12px;
+  max-width: 320px;
+}
+
+.form-profil label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #444;
+}
+
+.form-profil input {
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+}
+
+.form-profil-boutons {
+  display: flex;
+  gap: 10px;
+  margin-top: 6px;
+}
+/* Pour éviter que  le dispaly: flex du haut ne puisse empeĉhe le js d'appliquer le hidden, ainsi le formulaire de modification de profil s'affichera sur sa propre page*/
+.form-profil[hidden] {
+  display: none;
+}
+.bouton-annuler-profil {
+  background-color: transparent;
+  color: #444;
+  border: 1px solid #ccc;
+  box-shadow: none;
+}
+
+.bouton-annuler-profil:hover {
+  background-color: #f5f5f5;
+  color: #1a1a1a;
+}
+
+.dons-kpi {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin: 24px 0;
+}
+
+.dons-graphique-bloc {
+  background: white;
+  border: 1px solid #eee;
+  border-radius: 14px;
+  padding: 24px;
+  margin-bottom: 32px;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.05);
+}
+
+.dons-graphique-bloc h3 {
+  font-size: 18px;
+  margin-bottom: 16px;
+}
+
+.dons-historique-titre {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+
+@media (max-width: 850px) {
+  .dons-kpi {
+    grid-template-columns: 1fr;
+  }
+}
+.collecte-resume {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin: 24px 0 32px;
+}
+
+.collecte-formulaire-bloc {
+  background: white;
+  border: 1px solid #eee;
+  border-radius: 14px;
+  padding: 24px;
+  margin-bottom: 32px;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.05);
+}
+
+.collecte-formulaire-bloc h3 {
+  font-size: 18px;
+  margin-bottom: 16px;
+}
+
+#form-collecte {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 500px;
+}
+
+#form-collecte label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #444;
+}
+
+#form-collecte input {
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+}
+
+.collecte-depenses-titre {
+  font-weight: 700;
+  font-size: 14px;
+  margin-top: 12px;
+}
+
+.collecte-depenses-grille {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.collecte-ligne-historique {
+  background: #FAFAFA;
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.collecte-ligne-historique strong {
+  display: block;
+}
+
+.collecte-ligne-historique .collecte-ligne-detail {
+  font-size: 13px;
+  color: #666;
+}
+
+@media (max-width: 850px) {
+  .collecte-resume,
+  .collecte-depenses-grille {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Nouveau ajustement pour l'ajout de l'espace formation et les différentes tâches de cette espace uniquement visible sur le dashboard du bénévole space */
+.tache-ligne {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #FAFAFA;
+  border-radius: 10px;
+  padding: 14px 18px;
+  margin-bottom: 10px;
+}
+
+.tache-ligne input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+}
+
+.tache-complete label {
+  text-decoration: line-through;
+  color: #999;
+}
+
+.formation-carte {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  background: white;
+  border: 1px solid #eee;
+  border-radius: 14px;
+  padding: 20px;
+  margin-bottom: 14px;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.05);
+}
+
+.formation-carte i {
+  font-size: 22px;
+  color: #E91E8C;
+  margin-top: 4px;
+}
+
+.formation-carte h3 {
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+
+.formation-carte p {
+  font-size: 14px;
+  color: #666;
 }

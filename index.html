@@ -463,9 +463,7 @@
 
 </div>
      
-    
-
-      <!-- Courriel -->
+       <!-- Courriel -->
       <a class="contact-card" href="mailto:juststartgiving@gmail.com">
 
         <span class="contact-icon-wrap" aria-hidden="true">
@@ -492,10 +490,687 @@
   </div>
 </section>
 
-    <section id="communaute" class="page" hidden>
-      <h2>Espace Communauté</h2>
-      <p class="sous-titre">Bénévoles, Partenaires, Membres — connectez-vous pour accéder à votre espace personnel.</p>
-    </section>
+   <!-- ===== MON ESPACE JSG ===== -->
+<section id="communaute" class="page" hidden>
+
+  <!-- Barre de titre de la page Mon Espace JSG -->
+  <div class="page-titre-barre">
+    <h2>Mon Espace JSG</h2>
+  </div>
+
+  <!-- ===== ZONE DE CONNEXION ===== -->
+  <!-- Cette partie s'affiche lorsque l'utilisateur n'est pas encore connecté -->
+   
+   <div id="espace-connexion" class="espace-connexion">
+    <div class="connexion-contenu">
+      <div class="connexion-carte">
+       <div class="connexion-avatar">
+         <i class="fa-solid fa-user"></i>
+       </div>
+                  </div>
+                <h2>Connexion</h2>
+      
+      <!-- Formulaire de connexion -->
+      <form id="form-connexion" class="form-connexion">
+
+        <label for="connexion-email">Adresse courriel</label>
+
+        <input
+          type="email"
+          id="connexion-email"
+          placeholder="exemple@email.com"
+          required
+        >
+
+        <label for="connexion-password">Mot de passe</label>
+
+        <input
+          type="password"
+          id="connexion-password"
+          placeholder="Votre mot de passe"
+          required
+        >
+
+        <!-- Choix du rôle : détermine quelles sections du tableau de bord seront visibles -->
+        <label for="connexion-role">Je suis</label>
+        <select id="connexion-role" required>
+         <option value="" disabled selected>Choisissez votre profil</option>
+         <option value="benevole">Bénévole</option>
+        <option value="partenaire">Partenaire</option>
+        <option value="membre">Membre</option>
+         <option value="donateur">Donateur</option>
+        <option value="admin">Fondatrice / Admin</option>
+</select>
+
+        <button type="submit">
+          Se connecter
+        </button>
+
+      </form>
+
+      <p class="connexion-options">
+        <a href="#">Mot de passe oublié ?</a>
+        <span>•</span>
+        <a href="#">Créer un compte</a>
+      </p>
+
+    </div>
+
+  </div>
+     
+  <!-- ===== TABLEAU DE BORD JSG ===== -->
+  <!-- Cette partie reste cachée tant que l'utilisateur n'est pas connecté -->
+  <div id="espace-tableau-bord" class="espace-tableau-bord" hidden>
+
+    <!-- Barre d'en-tête utilisateur -->
+    <div class="espace-entete-utilisateur">
+      <div class="espace-avatar-mini-wrap">
+        <div class="espace-avatar-mini" id="espace-avatar-mini-affichage">
+          <i class="fa-solid fa-user"></i>
+        </div>
+        <label for="espace-avatar-mini-input" class="espace-avatar-mini-modifier" title="Changer la photo">
+          <i class="fa-solid fa-camera"></i>
+        </label>
+        <input type="file" id="espace-avatar-mini-input" accept="image/*" hidden>
+      </div>
+      <h2>Bonjour, <span id="prenom-utilisateur">Theresa</span> 👋</h2>
+    </div>
+
+    <!-- Menu latéral de Mon Espace JSG -->
+    <aside class="espace-menu">
+
+  <h3>Mon Espace</h3>
+
+  <button class="bouton-espace-menu" data-espace="dashboard" data-roles="benevole,partenaire,membre,donateur,admin">
+    <i class="fa-solid fa-house"></i>
+    Tableau de bord
+  </button>
+
+  <button class="bouton-espace-menu" data-espace="dons" data-roles="benevole,partenaire,membre,donateur,admin">
+    <i class="fa-solid fa-gift"></i>
+    Mes dons
+  </button>
+
+  <button class="bouton-espace-menu" data-espace="activites" data-roles="benevole,membre,admin">
+    <i class="fa-solid fa-calendar-days"></i>
+    Mes activités
+  </button>
+
+  <button class="bouton-espace-menu" data-espace="taches" data-roles="benevole,admin">
+    <i class="fa-solid fa-list-check"></i>
+    Mes tâches
+  </button>
+
+  <button class="bouton-espace-menu" data-espace="formation" data-roles="benevole,admin">
+    <i class="fa-solid fa-graduation-cap"></i>
+    Formation
+  </button>
+
+  <button class="bouton-espace-menu" data-espace="collecte" data-roles="admin,partenaire">
+    <i class="fa-solid fa-sack-dollar"></i>
+    Collecte financière
+  </button>
+
+  <button class="bouton-espace-menu" data-espace="galerie" data-roles="benevole,partenaire,membre,donateur,admin">
+    <i class="fa-solid fa-images"></i>
+    Galerie
+  </button>
+
+  <button class="bouton-espace-menu" data-espace="priere" data-roles="benevole,partenaire,membre,donateur,admin">
+    <i class="fa-solid fa-hands-praying"></i>
+    My Secret Place
+  </button>
+
+  <button class="bouton-espace-menu" data-espace="profil" data-roles="benevole,partenaire,membre,donateur,admin">
+    <i class="fa-solid fa-user"></i>
+    Mon profil
+  </button>
+
+  <button id="bouton-deconnexion" class="bouton-deconnexion">
+    <i class="fa-solid fa-right-from-bracket"></i>
+    Déconnexion
+  </button>
+</aside>
+    <!-- ===== CONTENU PRINCIPAL DE MON ESPACE JSG ===== -->
+    <div class="espace-contenu">
+
+      <!-- ===== TABLEAU DE BORD ===== -->
+      <div id="espace-dashboard" class="espace-section">
+        
+        <!-- Le prénom est maintenant affiché dans la barre d'en-tête au-dessus -->
+        <p class="sous-titre">
+          Bienvenue dans votre espace personnel Just Start Giving.
+        </p>
+        <!--Ne new dashbord of the member space-->
+    <div class="dashboard-statistiques">
+
+  <div class="dashboard-carte">
+    <div class="dashboard-icone-boite">
+      <i class="fa-solid fa-gift"></i>
+    </div>
+    <div class="dashboard-carte-texte">
+      <span class="dashboard-nombre">3</span>
+      <p>Dons effectués</p>
+    </div>
+  </div>
+
+  <div class="dashboard-carte">
+    <div class="dashboard-icone-boite">
+      <i class="fa-solid fa-hand-holding-heart"></i>
+    </div>
+    <div class="dashboard-carte-texte">
+      <span class="dashboard-nombre">425 $</span>
+      <p>Total donné</p>
+    </div>
+  </div>
+
+  <div class="dashboard-carte">
+    <div class="dashboard-icone-boite">
+      <i class="fa-solid fa-people-group"></i>
+    </div>
+    <div class="dashboard-carte-texte">
+      <span class="dashboard-nombre">2</span>
+      <p>Actions participées</p>
+    </div>
+  </div>
+</div>
+        
+
+        <!-- Dernière collecte mise en avant -->
+        <div class="dashboard-derniere-collecte">
+
+          <p class="label-accueil">Dernière collecte</p>
+
+          <h3>Semaine Solidaire de la Rentrée 2026</h3>
+
+          <p>
+            Découvrez les images et vidéos de nos dernières actions.
+          </p>
+
+          <button class="bouton-aller-galerie">
+            Voir la galerie
+          </button>
+
+        </div>
+
+      </div>
+
+      <!-- ===== HISTORIQUE DES DONS ===== -->
+      <div id="espace-dons" class="espace-section" hidden>
+
+  <h2>Mes dons</h2>
+
+  <p class="sous-titre">
+    Retrouvez ici l'historique de vos contributions à Just Start Giving.
+  </p>
+
+  <!-- Statistiques rapides -->
+  <div class="dons-kpi">
+
+    <div class="dashboard-carte">
+      <div class="dashboard-icone-boite">
+        <i class="fa-solid fa-hand-holding-heart"></i>
+      </div>
+      <div class="dashboard-carte-texte">
+        <span class="dashboard-nombre">425 $</span>
+        <p>Total donné</p>
+      </div>
+    </div>
+
+    <div class="dashboard-carte">
+      <div class="dashboard-icone-boite">
+        <i class="fa-solid fa-gift"></i>
+      </div>
+      <div class="dashboard-carte-texte">
+        <span class="dashboard-nombre">3</span>
+        <p>Dons effectués</p>
+      </div>
+    </div>
+
+    <div class="dashboard-carte">
+      <div class="dashboard-icone-boite">
+        <i class="fa-solid fa-chart-line"></i>
+      </div>
+      <div class="dashboard-carte-texte">
+        <span class="dashboard-nombre">142 $</span>
+        <p>Don moyen</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Graphique -->
+  <div class="dons-graphique-bloc">
+    <h3>Évolution de mes dons</h3>
+    <canvas id="graphique-mes-dons"></canvas>
+  </div>
+
+  <h3 class="dons-historique-titre">Historique détaillé</h3>
+
+        <!-- Premier don -->
+        <div class="don-ligne">
+
+          <div>
+            <strong>12 août 2026</strong>
+            <p>Collecte fournitures scolaires 2026</p>
+          </div>
+
+          <div class="don-montant">
+            150 $
+          </div>
+
+          <span class="don-statut">
+            Don confirmé ✓
+          </span>
+
+        </div>
+
+        <!-- Deuxième don -->
+        <div class="don-ligne">
+
+          <div>
+            <strong>20 décembre 2025</strong>
+            <p>Collecte de Noël 2025</p>
+          </div>
+
+          <div class="don-montant">
+            200 $
+          </div>
+
+          <span class="don-statut">
+            Don confirmé ✓
+          </span>
+
+        </div>
+
+        <!-- Troisième don -->
+        <div class="don-ligne">
+
+          <div>
+            <strong>15 août 2024</strong>
+            <p>Semaine Solidaire de la Rentrée 2024</p>
+          </div>
+
+          <div class="don-montant">
+            75 $
+          </div>
+
+          <span class="don-statut">
+            Don confirmé ✓
+          </span>
+
+        </div>
+
+      </div>
+      <!-- ===== MES ACTIVITÉS ===== -->
+      <div id="espace-activites" class="espace-section" hidden>
+
+        <h2>Mes activités</h2>
+
+        <p class="sous-titre">
+          Retrouvez ici les actions auxquelles vous avez participé.
+        </p>
+
+        <div class="activite-carte">
+
+          <div>
+            <p class="label-accueil">Août 2026</p>
+
+            <h3>Remise de fournitures scolaires</h3>
+
+            <p>
+              Participation à la préparation et à la distribution des dons.
+            </p>
+          </div>
+
+        </div>
+
+        <div class="activite-carte">
+
+          <div>
+            <p class="label-accueil">Décembre 2025</p>
+
+            <h3>Collecte de Noël</h3>
+
+            <p>
+              Participation à l'organisation de la collecte.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ===== MES TÂCHES (bénévole) ===== -->
+<div id="espace-taches" class="espace-section" hidden>
+
+  <h2>Mes tâches</h2>
+
+  <p class="sous-titre">
+    Suivez ce que vous avez déjà accompli et ce qu'il reste à faire en tant que bénévole JSG.
+  </p>
+
+  <h3 class="dons-historique-titre">À faire</h3>
+
+  <div class="tache-ligne">
+    <input type="checkbox" id="tache-1">
+    <label for="tache-1">Préparer les kits scolaires pour la remise du 29 septembre</label>
+  </div>
+
+  <div class="tache-ligne">
+    <input type="checkbox" id="tache-2">
+    <label for="tache-2">Confirmer la liste des familles bénéficiaires</label>
+  </div>
+
+  <h3 class="dons-historique-titre" style="margin-top: 32px;">Complétées</h3>
+
+  <div class="tache-ligne tache-complete">
+    <input type="checkbox" id="tache-3" checked disabled>
+    <label for="tache-3">Distribution des fournitures scolaires — Août 2026</label>
+  </div>
+
+</div>
+
+<!-- ===== FORMATION (bénévole) Cette section est uniquement visible pour els bénévoles dans leur espace bénévoles ===== -->
+<div id="espace-formation" class="espace-section" hidden>
+
+  <h2>Formation</h2>
+
+  <p class="sous-titre">
+    Ressources et formations pour bien accompagner les actions de Just Start Giving.
+  </p>
+
+  <div class="formation-carte">
+    <i class="fa-solid fa-file-lines"></i>
+    <div>
+      <h3>Guide du bénévole JSG</h3>
+      <p>Les bases pour bien démarrer : valeurs, rôles, sécurité.</p>
+    </div>
+  </div>
+
+  <div class="formation-carte">
+    <i class="fa-solid fa-video"></i>
+    <div>
+      <h3>Vidéo — Accueillir les familles</h3>
+      <p>Comment accueillir et orienter les familles lors d'une collecte.</p>
+    </div>
+  </div>
+
+</div>
+      <!-- ===== GALERIE JSG ===== -->
+      <div id="espace-galerie" class="espace-section" hidden>
+
+        <h2>Galerie JSG</h2>
+
+        <p class="sous-titre">
+          Découvrez les actions réalisées au fil des années grâce à votre générosité.
+        </p>
+        <!-- ===== COLLECTE 2026 ===== -->
+        <div class="galerie-collecte">
+
+          <!-- Bouton qui ouvre ou ferme le contenu de la collecte -->
+          <button class="galerie-entete" data-galerie="galerie-2026">
+
+            <span>Collecte 2026</span>
+
+            <span class="galerie-plus">+</span>
+
+          </button>
+
+          <!-- Contenu caché par défaut -->
+          <div id="galerie-2026" class="galerie-contenu" hidden>
+
+            <h3>Semaine Solidaire de la Rentrée 2026</h3>
+
+            <p>
+              Troisième édition en République du Congo et première édition au Burkina Faso.
+            </p>
+
+            <!-- Grille d'images -->
+            <div class="galerie-images">
+
+              <img src="images/image2026.jpeg" alt="Collecte JSG 2026">
+
+              <img src="images/image 3.png" alt="Remise des dons 2026 Congo">
+
+              <img src="images/image 6.png" alt="Remise des dons 2026 Burkina Faso">
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- ===== COLLECTE 2025 ===== -->
+        <div class="galerie-collecte">
+
+          <button class="galerie-entete" data-galerie="galerie-2025">
+
+            <span>Collecte 2025</span>
+
+            <span class="galerie-plus">+</span>
+
+          </button>
+
+          <div id="galerie-2025" class="galerie-contenu" hidden>
+
+            <h3>Semaine Solidaire de la Rentrée 2025</h3>
+
+            <p>
+              Deuxième édition de la collecte annuelle Just Start Giving.
+            </p>
+
+            <div class="galerie-images">
+
+              <img src="images/affiche-2025.png" alt="Collecte JSG 2025">
+
+            </div>
+
+          </div>
+
+        </div>
+
+        <!-- ===== COLLECTE 2024 ===== -->
+        <div class="galerie-collecte">
+
+          <button class="galerie-entete" data-galerie="galerie-2024">
+
+            <span>Collecte 2024</span>
+
+            <span class="galerie-plus">+</span>
+
+          </button>
+
+          <div id="galerie-2024" class="galerie-contenu" hidden>
+
+            <h3>Semaine Solidaire de la Rentrée 2024</h3>
+
+            <p>
+              Première édition de la Semaine Solidaire de la Rentrée.
+            </p>
+
+            <div class="galerie-images">
+
+              <img src="images/affiche-2024.png" alt="Collecte JSG 2024">
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+      <!-- ===== ESPACE DE PRIÈRE ===== -->
+      <div id="espace-priere" class="espace-section" hidden>
+
+        <h2>Espace de prière 🙏</h2>
+
+        <p class="sous-titre">
+          Déposez un sujet de prière et permettez à la communauté JSG de prier avec vous.
+        </p>
+
+        <!-- Formulaire de sujet de prière -->
+        <form id="form-priere" class="form-priere">
+
+          <label for="sujet-priere">
+            Votre sujet de prière
+          </label>
+
+          <textarea
+            id="sujet-priere"
+            rows="6"
+            placeholder="Écrivez votre sujet de prière..."
+            required
+          ></textarea>
+
+          <!-- Permet à la personne de choisir l'anonymat -->
+          <label class="priere-anonyme">
+
+            <input
+              type="checkbox"
+              id="priere-anonyme"
+            >
+            Publier anonymement
+          </label>
+
+          <button type="submit">
+            Envoyer mon sujet
+          </button>
+
+        </form>
+      </div>
+      <!-- ===== PROFIL UTILISATEUR ===== -->
+
+      <!-- ===== COLLECTE FINANCIÈRE (admin seulement) ===== -->
+<div id="espace-collecte" class="espace-section" hidden>
+
+  <h2>Collecte financière</h2>
+  <p class="sous-titre">
+    Ajoutez les montants reçus et les dépenses de chaque collecte.
+  </p>
+
+  <!-- Résumé -->
+  <div class="collecte-resume">
+    <div class="dashboard-carte">
+      <div class="dashboard-icone-boite"><i class="fa-solid fa-piggy-bank"></i></div>
+      <div class="dashboard-carte-texte">
+        <span class="dashboard-nombre" id="collecte-total-recu">0 $</span>
+        <p>Total reçu</p>
+      </div>
+    </div>
+    <div class="dashboard-carte">
+      <div class="dashboard-icone-boite"><i class="fa-solid fa-money-bill-wave"></i></div>
+      <div class="dashboard-carte-texte">
+        <span class="dashboard-nombre" id="collecte-total-depense">0 $</span>
+        <p>Total dépensé</p>
+      </div>
+    </div>
+    <div class="dashboard-carte">
+      <div class="dashboard-icone-boite"><i class="fa-solid fa-scale-balanced"></i></div>
+      <div class="dashboard-carte-texte">
+        <span class="dashboard-nombre" id="collecte-solde">0 $</span>
+        <p>Solde restant</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Graphique répartition des dépenses -->
+  <div class="dons-graphique-bloc">
+    <h3>Répartition des dépenses</h3>
+    <canvas id="graphique-collecte-depenses"></canvas>
+  </div>
+
+    <!-- Formulaire d'ajout (visible seulement pour la fondatrice/admin) -->
+<div class="collecte-formulaire-bloc" id="collecte-formulaire-admin">
+  <h3>Ajouter une collecte</h3>
+    <form id="form-collecte">
+
+      <label for="collecte-nom">Nom de la collecte</label>
+      <input type="text" id="collecte-nom" placeholder="Ex. Semaine Solidaire de la Rentrée 2026" required>
+
+      <label for="collecte-montant-recu">Montant total reçu ($)</label>
+      <input type="number" id="collecte-montant-recu" min="0" step="1" required>
+
+      <p class="collecte-depenses-titre">Dépenses par catégorie ($)</p>
+
+      <div class="collecte-depenses-grille">
+        <div>
+          <label for="depense-vetements">Vêtements</label>
+          <input type="number" id="depense-vetements" min="0" step="1" value="0">
+        </div>
+        <div>
+          <label for="depense-kits">Kits scolaires</label>
+          <input type="number" id="depense-kits" min="0" step="1" value="0">
+        </div>
+        <div>
+          <label for="depense-nourriture">Nourriture</label>
+          <input type="number" id="depense-nourriture" min="0" step="1" value="0">
+        </div>
+        <div>
+          <label for="depense-transport">Transport</label>
+          <input type="number" id="depense-transport" min="0" step="1" value="0">
+        </div>
+        <div>
+          <label for="depense-autre">Autre</label>
+          <input type="number" id="depense-autre" min="0" step="1" value="0">
+        </div>
+      </div>
+      <button type="submit">Enregistrer la collecte</button>
+    </form>
+  </div>
+  <!-- Historique -->
+  <h3 class="dons-historique-titre">Historique des collectes</h3>
+  <div id="collecte-historique"></div>
+
+</div>
+<!-- ===== PROFIL UTILISATEUR ===== -->
+<div id="espace-profil" class="espace-section" hidden>
+
+  <h2>Mon profil</h2>
+
+  <p class="sous-titre">
+    Consultez et gérez vos informations personnelles.
+  </p>
+
+  <div class="profil-carte">
+    <div class="profil-avatar">
+      <i class="fa-solid fa-user"></i>
+    </div>
+
+    <div class="profil-carte-droite">
+      <div class="profil-informations" id="profil-affichage">
+        <p><strong>Prénom :</strong> <span id="profil-affiche-prenom">Theresa</span></p>
+        <p><strong>Nom :</strong> <span id="profil-affiche-nom">Youndouka</span></p>
+        <p><strong>Courriel :</strong> <span id="profil-affiche-email">theresa@example.com</span></p>
+        <p><strong>Rôle :</strong> Membre JSG</p>
+
+        <button type="button" id="bouton-modifier-profil" class="bouton-modifier-profil">
+          <i class="fa-solid fa-pen"></i>
+          Modifier mon profil
+        </button>
+      </div>
+
+      <form id="form-profil" class="form-profil" hidden>
+
+        <label for="profil-input-prenom">Prénom</label>
+        <input type="text" id="profil-input-prenom" value="Theresa" required>
+
+        <label for="profil-input-nom">Nom</label>
+        <input type="text" id="profil-input-nom" value="Youndouka" required>
+
+        <label for="profil-input-email">Courriel</label>
+        <input type="email" id="profil-input-email" value="theresa@example.com" required>
+
+        <div class="form-profil-boutons">
+          <button type="submit">Enregistrer</button>
+          <button type="button" id="bouton-annuler-profil" class="bouton-annuler-profil">Annuler</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+   
+</section>
   </main>
 
 <!--Pour l'option info-lettre-->
@@ -570,6 +1245,9 @@
 <button id="retour-haut" aria-label="Retour en haut">
   <i class="fa-solid fa-arrow-up"></i>
 </button>
+<!--Nouvelle bibliothèque pour la chart .js-->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="script.js"></script>
+
 </body>
 </html>
