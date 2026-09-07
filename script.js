@@ -1,3 +1,26 @@
+// ===== FONCTION RÉUTILISABLE : AFFICHER UN TOAST TEMPORAIRE =====
+function afficherToast(message, estUneErreur = false) {
+  const toast = document.querySelector('#toast-notification');
+
+  toast.textContent = message;
+  toast.hidden = false;
+  toast.classList.toggle('toast-erreur', estUneErreur);
+
+  // Force le navigateur à "voir" le hidden avant d'ajouter la classe visible,
+  // sinon la transition CSS ne se joue pas correctement
+  setTimeout(function() {
+    toast.classList.add('toast-visible');
+  }, 10);
+
+  // Cache le toast après 3 secondes (ajustez si vous voulez vraiment 30s)
+  setTimeout(function() {
+    toast.classList.remove('toast-visible');
+    setTimeout(function() {
+      toast.hidden = true;
+    }, 400); // attend la fin de la transition avant de vraiment cacher
+  }, 3000);
+}
+
 // ===== NAVIGATION ENTRE LES SECTIONS =====
 const liens = document.querySelectorAll('.lien-nav');   // ← voit header ET footer
 const pages = document.querySelectorAll('.page');
@@ -96,31 +119,54 @@ if (formConnexion) {
   formConnexion.addEventListener('submit', function(event) {
     event.preventDefault();
 
-    roleConnecte = document.querySelector('#connexion-role').value;
+    const emailSaisi = document.querySelector('#connexion-email').value;
+    const comptes = JSON.parse(localStorage.getItem('jsg-comptes')) || [];
+    const compteTrouve = comptes.find(compte => compte.email === emailSaisi);
 
-espaceConnexion.hidden = true;
-espaceTableauBord.hidden = false;
+    roleConnecte = compteTrouve ? compteTrouve.role : document.querySelector('#connexion-role').value;
 
-// Le formulaire d'ajout de collecte n'est visible que pour la fondatrice/admin
-const formulaireCollecteAdmin = document.querySelector('#collecte-formulaire-admin');
-if (formulaireCollecteAdmin) {
-  formulaireCollecteAdmin.hidden = (roleConnecte !== 'admin');
-}
+    // ===== RÉINITIALISATION DES DONNÉES AFFICHÉES =====
+    // On efface d'abord tout, pour ne jamais garder les infos de la personne précédente
+    const prenomAffiche = compteTrouve ? compteTrouve.prenom : 'utilisateur';
 
-    // On filtre les boutons du menu selon le rôle connecté
+    document.querySelector('#prenom-utilisateur').textContent = prenomAffiche;
+    document.querySelector('#profil-affiche-prenom').textContent = prenomAffiche;
+    document.querySelector('#profil-affiche-nom').textContent = compteTrouve ? '' : 'Nom';
+    document.querySelector('#profil-affiche-email').textContent = compteTrouve ? compteTrouve.email : emailSaisi;
+
+    // Réinitialise aussi l'avatar (au cas où la personne précédente avait ajouté une photo)
+    const avatarMini = document.querySelector('#espace-avatar-mini-affichage');
+    avatarMini.style.backgroundImage = '';
+    avatarMini.innerHTML = '<i class="fa-solid fa-user"></i>';
+
+    // Réinitialise l'historique des collectes (admin) pour ne pas mélanger les sessions
+    collectes = [];
+    if (historiqueCollecte) {
+      historiqueCollecte.innerHTML = '';
+    }
+    if (typeof recalculerCollecte === 'function') {
+      recalculerCollecte();
+    }
+
+    espaceConnexion.hidden = true;
+    espaceTableauBord.hidden = false;
+
+    const formulaireCollecteAdmin = document.querySelector('#collecte-formulaire-admin');
+    if (formulaireCollecteAdmin) {
+      formulaireCollecteAdmin.hidden = (roleConnecte !== 'admin');
+    }
+
     boutonsEspaceMenu.forEach(bouton => {
       const rolesAutorises = bouton.getAttribute('data-roles').split(',');
       bouton.style.display = rolesAutorises.includes(roleConnecte) ? 'flex' : 'none';
     });
 
-    // On affiche par défaut le Tableau de bord (visible pour tous les rôles)
     sectionsEspace.forEach(section => section.hidden = true);
     document.querySelector('#espace-dashboard').hidden = false;
     boutonsEspaceMenu.forEach(b => b.classList.remove('active'));
     document.querySelector('[data-espace="dashboard"]').classList.add('active');
   });
 }
-
 
 // ===== NAVIGATION À L'INTÉRIEUR DE MON ESPACE JSG =====
 
@@ -176,8 +222,6 @@ boutonsEspaceMenu.forEach(bouton => {
 
 });
 
-
-
 // ===== BOUTON "VOIR LA GALERIE" DU TABLEAU DE BORD =====
 
 // Récupère le bouton situé sur le tableau de bord
@@ -195,7 +239,6 @@ if (boutonAllerGalerie) {
 
     });
 
-
     // Affiche directement la Galerie
     const galerie = document.querySelector('#espace-galerie');
 
@@ -205,14 +248,12 @@ if (boutonAllerGalerie) {
 
     }
 
-
     // Retire la classe active de tous les boutons du menu
     boutonsEspaceMenu.forEach(bouton => {
 
       bouton.classList.remove('active');
 
     });
-
 
     // Active visuellement le bouton Galerie du menu
     const boutonGalerie = document.querySelector(
@@ -228,7 +269,6 @@ if (boutonAllerGalerie) {
   });
 
 }
-
 
 // ===== GALERIE DES COLLECTES =====
 
@@ -277,8 +317,6 @@ boutonsGalerie.forEach(bouton => {
 
 });
 
-
-
 // ===== FORMULAIRE DE PRIÈRE =====
 
 // Récupère le formulaire de prière
@@ -309,7 +347,6 @@ if (formPriere) {
 
 }
 
-
 // ===== DÉCONNEXION DE MON ESPACE JSG =====
 
 // Récupère le bouton Déconnexion
@@ -325,7 +362,7 @@ if (boutonDeconnexion) {
 
     // Réaffiche le formulaire de connexion
     espaceConnexion.hidden = false;
-
+    formConnexion.reset(); // S'assure de rénitialiser le formulaire de connexion après la déconnexion pour éviter que les données du dernier utilisateur à etre connecté ne reste afficher 
 
     // Remet le tableau de bord comme section active
     sectionsEspace.forEach(section => {
@@ -477,7 +514,6 @@ if (canvasCollecteDepenses) {
     }
   });
 }
-
 function recalculerCollecte() {
 
   let totalRecu = 0;
@@ -539,3 +575,78 @@ if (formCollecte) {
     formCollecte.reset();
   });
 }
+
+// ===== CRÉATION DE COMPTE (prototype localStorage) =====
+const espaceCreation = document.querySelector('#espace-creation');
+const lienCreerCompte = document.querySelector('#lien-creer-compte');
+const lienRetourConnexion = document.querySelector('#lien-retour-connexion');
+const formCreation = document.querySelector('#form-creation');
+const creationMessage = document.querySelector('#creation-message');
+const lienMotDePasseOublie = document.querySelector('#lien-mot-de-passe-oublie');
+
+// Bascule vers le formulaire de création de compte
+if (lienCreerCompte) {
+  lienCreerCompte.addEventListener('click', function(event) {
+    event.preventDefault();
+    espaceConnexion.hidden = true;
+    espaceCreation.hidden = false;
+    formConnexion.reset(); // Pour ne pas garder d'anciennes valeurs si quelqu'un revenait en arrière après la création de son compte
+  });
+}
+
+// Retour vers le formulaire de connexion
+if (lienRetourConnexion) {
+  lienRetourConnexion.addEventListener('click', function(event) {
+    event.preventDefault();
+    espaceCreation.hidden = true;
+    espaceConnexion.hidden = false;
+  });
+}
+
+// Soumission du formulaire de création de compte
+if (formCreation) {
+  formCreation.addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    const nouveauCompte = {
+      prenom: document.querySelector('#creation-prenom').value,
+      email: document.querySelector('#creation-email').value,
+      motdepasse: document.querySelector('#creation-password').value,
+      role: document.querySelector('#creation-role').value
+    };
+
+    // Récupère les comptes déjà enregistrés (ou un tableau vide s'il n'y en a pas)
+    const comptes = JSON.parse(localStorage.getItem('jsg-comptes')) || [];
+
+    // Vérifie si l'email est déjà utilisé
+    const emailExiste = comptes.some(compte => compte.email === nouveauCompte.email);
+
+    if (emailExiste) {
+      creationMessage.textContent = 'Un compte existe déjà avec cet e-mail.';
+      creationMessage.style.color = '#ffb6d9';
+      return;
+    }
+
+    // Ajoute le nouveau compte et sauvegarde
+       comptes.push(nouveauCompte);
+    localStorage.setItem('jsg-comptes', JSON.stringify(comptes));
+
+    afficherToast(`Compte créé avec succès, ${nouveauCompte.prenom} ! Redirection...`);
+    formCreation.reset();
+
+    // Redirige automatiquement vers la connexion après un court délai  et s,assure de réinitialiser toutes les données qui étaient vant
+    setTimeout(function() {
+  espaceCreation.hidden = true;
+  espaceConnexion.hidden = false;
+  formConnexion.reset();   // ← nouvelle ligne : vide le formulaire de connexion
+}, 1200);
+  });
+}
+// Message temporaire pour "mot de passe oublié" (nécessite un vrai backend)
+if (lienMotDePasseOublie) {
+  lienMotDePasseOublie.addEventListener('click', function(event) {
+    event.preventDefault();
+    alert('Cette fonctionnalité sera disponible une fois notre système de compte sécurisé mis en place. Merci de votre patience !');
+  });
+}
+

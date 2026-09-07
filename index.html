@@ -549,14 +549,60 @@
       </form>
 
       <p class="connexion-options">
-        <a href="#">Mot de passe oublié ?</a>
-        <span>•</span>
-        <a href="#">Créer un compte</a>
-      </p>
+  <a href="#" id="lien-mot-de-passe-oublie">Mot de passe oublié ?</a>
+  <span>•</span>
+  <a href="#" id="lien-creer-compte">Créer un compte</a>
+</p>
 
     </div>
 
   </div>
+
+<!-- ===== CRÉATION DE COMPTE (prototype localStorage) ===== -->
+<div id="espace-creation" class="espace-connexion" hidden>
+
+  <div class="connexion-contenu">
+
+    <div class="connexion-avatar">
+      <i class="fa-solid fa-user-plus"></i>
+    </div>
+
+    <h2>Créer mon compte JSG</h2>
+
+    <form id="form-creation" class="form-connexion">
+
+      <label for="creation-prenom">Prénom</label>
+      <input type="text" id="creation-prenom" placeholder="Votre prénom" required>
+
+      <label for="creation-email">Adresse courriel</label>
+      <input type="email" id="creation-email" placeholder="exemple@email.com" required>
+
+      <label for="creation-password">Mot de passe</label>
+      <input type="password" id="creation-password" placeholder="Choisissez un mot de passe" required>
+
+      <label for="creation-role">Je suis</label>
+      <select id="creation-role" required>
+        <option value="" disabled selected>Choisissez votre profil</option>
+        <option value="benevole">Bénévole</option>
+        <option value="partenaire">Partenaire</option>
+        <option value="membre">Membre</option>
+        <option value="donateur">Donateur</option>
+      </select>
+
+      <button type="submit">Créer mon compte</button>
+
+    </form>
+
+    <p class="connexion-options">
+      <a href="#" id="lien-retour-connexion">J'ai déjà un compte</a>
+    </p>
+
+    <p id="creation-message"></p>
+
+  </div>
+
+</div>
+
      
   <!-- ===== TABLEAU DE BORD JSG ===== -->
   <!-- Cette partie reste cachée tant que l'utilisateur n'est pas connecté -->
@@ -1247,6 +1293,8 @@
 </button>
 <!--Nouvelle bibliothèque pour la chart .js-->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!-- Conteneur pour les notifications temporaires (toasts) -->
+<div id="toast-notification" class="toast" hidden></div>
 <script src="script.js"></script>
 
 </body>

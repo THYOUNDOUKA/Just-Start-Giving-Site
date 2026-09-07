@@ -1651,3 +1651,35 @@ footer {
   font-size: 14px;
   color: #666;
 }
+
+#creation-message {
+  margin-top: 16px;
+  color: #dbe4ff;
+  font-weight: 600;
+}
+
+
+.toast {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #1e3a8a;
+  color: white;
+  padding: 16px 28px;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 14px;
+  box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.2);
+  z-index: 200;
+  opacity: 0;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.toast.toast-visible {
+  opacity: 1;
+}
+
+.toast.toast-erreur {
+  background-color: #d11077;
+}
